@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>CMP Express Highway Performance Comparator - 2012,2015</title>
+		
+		<!-- CSS Stylesheets -->
+		<link rel="stylesheet" href="expressway_app.css" type="text/css" />
+		
+		<!-- d3 Library and Plugins -->
+		<!--<script src="https://d3js.org/d3.v4.js"></script>-->
+		<script src="../../libs/d3/d3-4.8.0/d3.js"></script>
+		<script src="../../libs/d3-tip/d3-tip-d3v4/index.js"></script>
+		
+		<!-- JavaScript for jQuery library -->
+		<script src="../../libs/jquery/jquery-1.11.1/jquery-1.11.1.min.js"></script>
+		
+		<!-- Accessible Grid -->
+		<script src="../../libs/accessibleGrid/accessibleGrid.js"></script> 
+		
+		<!-- OpenLayers plugins -->
+		<script src="../../libs/openlayers/Openlayers-4.2.0/build/ol.js"></script>
+		<link rel="stylesheet" href="http://openlayers.org/en/latest/css/ol.css" type="text/css">
+		<script src="../../libs/proj4js/proj4js-2.4.3/dist/proj4-src.js"></script>
+				
+		<!-- JavaScript Scripts -->
+		<script src="modernizr-2.8.2-custom.min.js"></script>
+		<script src="MapStyleLib_ol3.js" type="text/javascript"></script>
+		<script src="PerfMeasLib.js" type="text/javascript"></script>
+		<script src="expressway_app.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-39489988-1']);
+			_gaq.push(['_setDomainName', 'ctps.org']);
+			_gaq.push(['_setAllowLinker', true]);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	
+	</head>
+	<body>		
+		<div id="wrapper">
+			
+			<div id="header">
+				<div id="header_logo">
+					<img src="mpologo.png" alt="Boston Region MPO Logo" title="Boston Region MPO Logo">
+				</div>
+				
+				<div id="header_title">
+					<h1 id="h1_title">CMP Express Highway Performance Comparator - 2012,2015</h1>
+					<div id="header_buttons">
+						<input type="button" id="reset_button" class="button_class" value="Reset Application"></input>
+						<span class="spanForButtonWithLink">
+							<input type="button" id="download_button_2012" class="button_class" value="Download Data - 2012"/>
+							<a id="downloadAnchorTag_2012" href=""></a>			
+						</span>
+						<span class="spanForButtonWithLink">
+							<input type="button" id="download_button_2015" class="button_class" value="Download Data - 2015"/>
+							<a id="downloadAnchorTag_2015" href=""></a>			
+						</span>	
+						<!--
+						<button id="help_button" class="button_class">
+							<img src="newwindow-example.gif" alt="help link opens new browser window" />
+							Help
+						</button>
+						-->
+						<button id="background_button" class="button_class">
+							<img src="newwindow-example.gif" />
+							Background
+						</button>
+						<span class="spanForButtonWithLink">
+							<!-- empty span to create space between buttons -->
+						</span>
+						<button id="usingApp_button" class="button_class">
+							<img src="newwindow-example.gif" />
+							Using the Application
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="columnLeft">
+				<nav>
+					<div class="menu">
+									
+						<h3 id="title"></h3>
+						
+						<ul id='main-nav'>
+							<li class='toplist'>
+								<a>Route</a>
+								<ul>
+									<li class='sublist'>
+										<a id="I-290-button" value="I290">I-290</a>
+										<a id="I-495-button" value="I495">I-495</a>
+										<a id="I-90-button" value="I90">I-90</a>
+										<a id="I-93-button" value="I93">I-93</a>
+										<a id="I-95-button" value="I95">I-95</a>
+										<a id="MA-128-button" value="MA128">MA-128</a>
+										<a id="MA-2-button" value="MA2">MA-2</a>
+										<a id="MA-24-button" value="MA24">MA-24</a>
+										<a id="MA-3-button" value="MA3">MA-3</a>
+										<a id="US-1-button" value="US1">US-1</a>
+										<a id="US-3-button" value="US3">US-3</a>
+										<a id="MA-213-button" value="MA213">MA-213</a>
+										<a id="Lowell-Connector-button" value="LowellConnector">Lowell Connector</a>
+										<a id="MA-140-button" value="MA140">MA-140</a>
+										<a id="MA-146-button" value="MA146">MA-146</a>
+										<a id="US-44-button" value="US44">US-44</a>
+									</li>
+								</ul>
+							</li>
+							<li class='toplist'>
+								<a>Performance Measure</a>
+								<ul>
+									<li class='sublist'>
+										<a id="AVG_SP" value="AVG_SP">Average Speed
+											<br>
+											<span class="measureDesc">(Miles per Hour)</span>
+										</a>
+										<a id="SPD_IX" value="SPD_IX">Speed Index
+											<br>
+											<span class="measureDesc">(Average Speed/Posted Speed Limit)</span>
+										</a>
+										<a id="CONG_MN" value="CONG_MN">Congested Time
+											<br>
+											<span class="measureDesc">(Minutes per Peak Period Hour Under 35 MPH)</span>
+										</a>
+										<a id="DEL_MI" value="DEL_MI">Delay Per Mile
+											<br>
+											<span class="measureDesc">(Seconds per Mile)</span>
+										</a>
+										<a id="AVTT_IX" value="AVTT_IX">Average Travel Time Index
+											<br>
+											<span class="measureDesc">(Peak Period Travel Time/Free Flow Travel Time)</span>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class='toplist'>
+								<a>Direction</a>
+								<ul>
+									<li class='sublist'>
+										<a id="NB-EB" value="EB">Eastbound</a>
+										<a id="SB-WB" value="WB">Westbound</a>
+									</li>
+								</ul>
+							</li>
+							<li class='toplist'>
+								<a>Peak Time Period</a>
+								<ul>
+									<li class='sublist'>
+										<a id="AM" value="AM">AM (6AM-10AM)</a>
+										<a id="PM" value="PM">PM (3PM-7PM)</a>
+									</li>
+								</ul>
+							</li>
+							<li class='toplist'>
+								<a>Year</a>
+								<ul>
+									<li class='sublist'>
+										<a id="2012" value=2012>2012</a>
+										<a id="2015" value=2015>2015</a>
+										<a id="1215" value=1215>2012/2015 Comparison</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!--    end 'main-nav'   -->	
+						
+						<div class="chartLegend">
+						</div>
+						<!--    end 'chartLegend'   -->	
+						
+					</div>
+					<!--	end 'menu'	-->		
+				</nav>
+			</div>
+			
+			<div class="columnRight">
+			
+				<div class="dropdownMap">
+					<button class="accordion active">
+						Map
+						<span>-</span>
+					</button>
+					<div id="mapDisplay" class="dropdown-viz" style="display: block;">
+					</div>
+				</div>
+				<!--    end 'mapDisplay'   -->		
+
+				<div class="dropdownCharts">
+					<button class="accordion">
+						Chart(s)
+						<span>-</span>
+					</button>
+					<div id="charts" class="dropdown-viz" style="display: none;">
+						<div id="chartDisplay"></div>
+						<div id="chartDifferDisplay"></div>
+					</div>
+				</div>
+				<!--    end 'chartDisplay' and 'chartDifferDisplay'  -->
+
+				<div class="dropdownTable">
+					<button class="accordion">
+						Table
+						<span>-</span>
+					</button>
+					<div id="table" class="dropdown-viz" style="display: none;">
+					</div>
+				</div>
+				<!--    end 'table'   -->
+				
+				<span id="popup"></span>
+				<span id="popupTest"></span>
+				<span id="diffLegendTest"></span>
+				
+			<div>
+			
+		</div>
+		<!--    end 'wrapper'   -->	
+		
+		<script type="text/javascript">
+		$(document).ready(function() {
+			// Create App
+			CTPS.INRIX.init();
+			
+			// Toggle Menu and Chart/Map/Table Display on click handler
+			// http://www.snyderplace.com/demos/collapsible.html
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+
+			for (i = 0; i < acc.length; i++) {
+				acc[i].onclick = function(){
+					this.classList.toggle("active");
+					if (this.classList.contains("active")) {
+						this.children[0].innerText = "-";
+						$(this.nextElementSibling).fadeIn()
+					} else {
+						this.children[0].innerText = "+";
+						$(this.nextElementSibling).fadeOut();
+					};
+					//var panel = this.nextElementSibling;
+					//(panel.style.display === "block") ? panel.style.display = "none" : panel.style.display = "block";
+				};
+			};
+			
+			// Fixed Nav Menu Scroll
+			// http://callmenick.com/post/single-page-site-with-smooth-scrolling-highlighted-link-and-fixed-navigation
+			$(window).scroll(function(){
+				var window_top = $(window).scrollTop();
+				//var div_top = $(".columnLeft").offset().top;
+				if (window_top >  82) {
+					$('nav').addClass('stick');
+					$('nav').removeClass('non-stick');
+				} else {
+					$('nav').removeClass('stick');
+					$('nav').addClass('non-stick');
+				}
+			});
+			
+			// Positioning and sizing for Nav Menu
+			$('.toplist').on('mouseenter', function(e) {
+				$('.dropdownMap').css({"z-index":-1});
+				$('.dropdownCharts').css({"z-index":-1});
+				$('.dropdownTable').css({"z-index":-1});
+			});
+			$('.toplist').on('mouseleave', function(e) {
+				$('.dropdownMap').css({"z-index":1});
+				$('.dropdownCharts').css({"z-index":1});
+				$('.dropdownTable').css({"z-index":1});
+			});
+			$('.sublist').width(
+				$('.columnLeft').width()*0.5
+			);
+			$('.sublist').css({
+				"max-height": $('.menu').height()
+			});
+		});
+		</script>
+		
+	</body>
+</html>

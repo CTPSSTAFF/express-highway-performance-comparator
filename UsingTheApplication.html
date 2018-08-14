@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Help</title>
+
+<style type="text/css">
+
+#bigbox {
+    border: 3px ridge #b22400; 
+    padding: 25px;
+    margins: 1px;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	color: #1d52c2;
+	width: 600px;
+	margin: 0 40px 0 0;	
+}
+h3 {
+    color: #b22400;
+    border-bottom: 1px solid #1d52c2;
+	overflow: hidden;
+}
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: .9em;
+	color: #000000;
+}
+a {
+    text-decoration: none;
+}
+a.button {    
+    border: solid 1px #1d52c2;
+    background-color: #1d52c2;
+    padding: 2px 2px 2px 2px;
+    color: #fff;
+    
+}
+a.button:hover {
+    background-color: #fff;
+    color: #1d52c2;
+}
+</style>
+
+<script TYPE="text/javascript">
+function targetopener(mylink, closeme, closeonly)
+{
+if (! (window.focus && window.opener))return true;
+window.opener.focus();
+if (! closeonly)window.opener.location.href=mylink.href;
+if (closeme)window.close();
+return false;
+}
+</script>
+</head>
+
+<body>
+<div id="bigbox">
+<div id="closeLink2">
+	<a href="http://www.ctps.org/geoserver/www/eebinger/CMP_Comparator_App/Express/index.html" class="button"
+	onclick="return targetopener(this,true,true)">Close help window</a>   
+</div>			<!--   END OF CLOSELINK  -->
+
+
+<h3>Using the Application</h3>
+<p>
+The comparator application shows the performance measure data for individual routes; each route is delineated by direction. Follow these steps to access and display information in the application:
+</p>
+<ol>
+	<li>Click the Route button to select a route.</li>
+	<li>Click the Performance Measure button to select a performance measure.</li>
+	<li>Click the Direction button to select the route direction.</li>
+	<li>Click the Peak Time Period button to select the peak period (AM or PM).</li>
+	<li>Click the Year button to select data from the year 2012 or 2015, or to compare the 2012 and 2015 data.</li>
+</ol>
+<p>
+Displays 
+</p>
+<ol>
+	<li>Click the Map display to view the performance data for the selected route in a detailed map.</li>
+	<li>Click the Chart display to view both a bar chart and line graph representing the selected route and performance data.</li>
+	<li>Click the Table display to view a table of attributes and performance data for each roadway segment on the selected route.</li>
+</ol>
+
+
+<h3>Data Sources/CMP Standards</h3>
+<p>
+The data displayed by the Express Highway Performance Comparator comes from the following sources:
+</p>
+<ul>
+	<li>INRIX </li>	
+	<li>MassDOT’s Road Inventory</li>
+	<li>Central Transportation Planning Staff (CTPS) of the Boston Region Metropolitan Planning Organization (MPO)</li>
+	<li>Massachusetts Department of Transportation (MassDOT)</li>
+	<li>Massachusetts Office of Geographic Information (MassGIS)</li>
+</ul>
+<p>
+<p>
+INRIX provided the speed data in one-minute increments per TMC, as a sample of 63 non-holiday Tuesdays, Wednesdays, and Thursdays in spring and fall 2015. CTPS collected and processed the data, and calculated the performance measures. The CMP defines peak periods for limited-access roadways as follows: AM peak period—6:00 AM to 10:00 AM; PM peak period—3:00 PM to 7:00 PM. Free-flow speeds and travel times were collected on the same days between 12:00 AM and 4:00 AM.
+</p>
+
+<div id="closeLink">
+	<a href="http://www.ctps.org/geoserver/www/eebinger/CMP_Comparator_App/Express/index.html" class="button"
+	onclick="return targetopener(this,true,true)" >Close help window</a>   
+</div>			<!--   END OF CLOSELINK  -->
+
+</div>          <!--   END OF BIGBOX    -->
+
+</body>
+</html>
